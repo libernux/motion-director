@@ -36,6 +36,9 @@ Requirements:
 - Nothing else global: each project pins its own HyperFrames CLI version and gets ffmpeg and ffprobe as
   dev dependencies.
 
+Check them with `bash <skill>/scripts/project/doctor.sh`; inside a project it also checks the project's
+ffmpeg and its HyperFrames pin.
+
 Or, from a local copy, link the folder into a skills directory. Either way, start a new session so the
 skill loads:
 
@@ -294,7 +297,7 @@ template.json         command manifest
 workflows/<command>/  one contract per command (goal, inputs, procedure, review gate)
 reference/            the craft: quality bar, story shapes, timing, motion, 3D stage, sound, gotchas, gates
 runbooks/             end-to-end playbooks
-scripts/project/      project setup, pinned CLI wrapper, render, score build
+scripts/project/      prerequisite check, project setup, pinned CLI wrapper, render, score build
 scripts/qa/           check summary, contact sheets, loudness
 scripts/score/        procedural score engine and arrangement templates
 scripts/vectorize/    turn a supplied illustration into a clean, animatable vector
