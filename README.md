@@ -40,9 +40,12 @@ Or, from a local copy, link the folder into a skills directory. Either way, star
 skill loads:
 
 ```bash
-ln -s ~/Work/motion-director ~/.claude/skills/motion-director   # available in every project
-ln -s ~/Work/motion-director .claude/skills/motion-director      # or in one repository only
+ln -s /path/to/motion-director ~/.claude/skills/motion-director   # available in every project
+ln -s /path/to/motion-director .claude/skills/motion-director      # or in one repository only
 ```
+
+Below and in the workflows, `<skill>` stands for the folder the skill was installed or linked into, for
+example `~/.claude/skills/motion-director` or `.claude/skills/motion-director`.
 
 ## Quick start
 
@@ -279,8 +282,8 @@ To start a project without the full chain:
 
 ```bash
 bun x hyperframes@0.8.85 init my-video --non-interactive --example=blank --skill=general-video
-bash ~/Work/motion-director/scripts/project/setup.sh my-video 0.8.85         # default kit
-bash ~/Work/motion-director/scripts/project/setup.sh my-video 0.8.85 stage   # 3D flow-board kit
+bash <skill>/scripts/project/setup.sh my-video 0.8.85         # default kit
+bash <skill>/scripts/project/setup.sh my-video 0.8.85 stage   # 3D flow-board kit
 ```
 
 Then start from the matching index in [templates/](templates/) and its scenes in
