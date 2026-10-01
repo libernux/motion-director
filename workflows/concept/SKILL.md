@@ -49,7 +49,11 @@ the timing/geometry spine `assets/lib/layout.js`.
    both read.
 5. **`STORYBOARD.md`:** frontmatter (format, duration, fps, message, arc, rhythm), the layer order, the
    handoff table (time, carrier, the rect both sides agree on), then one `## Frame N` block per composition
-   with `status`, `src`, `duration`, `scene`, blueprint/rules.
+   with `status`, `src`, `duration`, `scene`, blueprint/rules. On the cinematic tier (`tier: cinematic` in
+   `BRIEF.md`, the default when the request does not say otherwise) each frame also carries `shot:` (size,
+   camera move and its motivation), `length:` (shot lengths vary; see the rhythm rules) and `cast:` (the
+   registry items or the reason a beat is hand-built), per
+   [../../reference/cinematic-grammar.md](../../reference/cinematic-grammar.md#casting).
 6. **Slots:** write `index.html` slots (`data-start`/`data-duration` = the spine windows), the vendored libs
    in load order (GSAP + plugins, brand data libs, `hw.js`, character lib, `layout.js`, `ui.js`, and for the
    stage `camera.js` + `board.js`) and fonts. Start from

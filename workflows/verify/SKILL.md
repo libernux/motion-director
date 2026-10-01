@@ -35,7 +35,12 @@ and write the report.
 4. Fix anything found (back to `build`/`score`), re-render, re-inspect the changed spans.
 5. G6: poster (`ffmpeg -ss <t> -i out/<name>.mp4 -frames:v 1 out/<name>.png`), contact sheet from the MP4
    into `snapshots/contact-sheet.jpg`; storyboard statuses set to `rendered`.
-6. G7: the report.
+6. **Cinematic gate (cinematic tier):** score the rendered frames against the critic rubric in
+   [../../reference/cinematic-grammar.md](../../reference/cinematic-grammar.md#critic-rubric-cinematic-gate)
+   (ideally by a separate reviewer: a subagent that sees only the frames, the brief and the rubric). Below an
+   average of 8, or any line below 6: apply the ranked fixes, re-render, re-score; at most two rounds. Record
+   the scores and the fixes in the report. With narration, transcribe the MP4 audio and compare it to the script.
+7. G7: the report.
 
 ### Outputs
 

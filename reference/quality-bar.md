@@ -32,6 +32,11 @@ What every video made with this skill must be, and what it must never be. Each l
 12. **Honest report.** What was built, where it lives, the facts it relies on (with sources), what was
     decided autonomously, what could not be verified (e.g. "loudness measured, not listened").
 
+13. **Cinematic tier** (when `BRIEF.md` says `tier: cinematic`): the rules and the critic rubric of
+    [cinematic-grammar.md](cinematic-grammar.md) on top of the twelve lines above, with the registry cast
+    first ([registry-index.md](registry-index.md)) and a natural native voice when there is narration
+    ([narration.md](narration.md)).
+
 ## Anti-patterns (reject on sight)
 
 - A flat `<canvas>` of cards with hard cuts where a 3D stage was expected; far-away "galaxy" wides.

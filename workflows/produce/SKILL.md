@@ -47,7 +47,10 @@ the whole chain at the house quality bar.
 4. **Character** ([../character/SKILL.md](../character/SKILL.md)) when a supplied avatar/mascot exists.
 5. **Build** ([../build/SKILL.md](../build/SKILL.md)): compositions on the spine, lint after each file,
    snapshots after the first full pass, fix, repeat.
-6. **Score** ([../score/SKILL.md](../score/SKILL.md)): arrangement from the spine, loudness, SFX slots.
+6. **Score** ([../score/SKILL.md](../score/SKILL.md)): arrangement from the spine, loudness, SFX slots; on
+   the cinematic tier, the three sound layers (music, sound design, voice) and the mix rules of
+   [../../reference/cinematic-grammar.md](../../reference/cinematic-grammar.md); narration per
+   [../../reference/narration.md](../../reference/narration.md).
 7. **Verify** ([../verify/SKILL.md](../verify/SKILL.md)): check to zero, render, MP4 frames, loudness,
    deliverables, report.
 8. **Remember:** record new silent failures or preferences where the environment keeps project memory

@@ -51,7 +51,13 @@ lints clean.
 6. **Tracker / HUD:** feature chips that check off; the running counter strip; chapter cards when used.
 7. **Finale** (`finale.html`): headline, dive or tunnel, mark draw/reveal to the untouched mark, the
    character's line, the CTA, the recap; a slow push to the last frame.
-8. **After each file:** `bash scripts/hf.sh lint`. **After the first full pass:** snapshots at the storyboard
+8. **Registry first (cinematic tier):** install every item cast in `STORYBOARD.md` with
+   `bash scripts/hf.sh add <name>`, re-skin it to DESIGN.md (tokens, type, grade) and wire it on the spine
+   before hand-building anything ([../../reference/registry-index.md](../../reference/registry-index.md)).
+   Then the **cinematic pass** of [../../reference/cinematic-grammar.md](../../reference/cinematic-grammar.md):
+   one grade across scenes (validated with `hyperframes grade-compare`), seeded grain and vignette, motion blur
+   on fast moves, depth layers with parallax, cuts on beats (`hyperframes beats` when there is a track).
+9. **After each file:** `bash scripts/hf.sh lint`. **After the first full pass:** snapshots at the storyboard
    times and both sides of every handoff; fix; repeat until the sheets pass G2.
 
 ### Outputs
