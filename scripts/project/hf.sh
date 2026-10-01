@@ -8,6 +8,8 @@ cd "$(dirname "$0")/.."
 PIN="$(cat .hf-version 2>/dev/null || echo 0.8.85)"
 mkdir -p .bin
 ln -sf "$PWD/node_modules/ffmpeg-static/ffmpeg" .bin/ffmpeg
+# fixed package paths; the grep drops the @ffprobe-installer/ffprobe wrapper itself
+# shellcheck disable=SC2010
 PROBE="$(ls -d "$PWD"/node_modules/@ffprobe-installer/*/ffprobe 2>/dev/null | grep -v '/ffprobe/ffprobe$' | head -1 || true)"
 if [ -n "$PROBE" ]; then
   chmod +x "$PROBE" && ln -sf "$PROBE" .bin/ffprobe

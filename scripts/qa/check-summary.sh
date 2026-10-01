@@ -5,7 +5,7 @@
 set -uo pipefail
 export LC_ALL=C
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-cd "$ROOT"
+cd "$ROOT" || exit 1
 LOG="$(mktemp -t check-log).txt"
 bash scripts/hf.sh check >"$LOG" 2>&1
 STATUS=$?
