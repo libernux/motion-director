@@ -107,3 +107,16 @@ Each of these cost real debugging. Most never show in `lint`; several only show 
 41. **A camera push breaks a pixel-identical handoff:** a scene with a slow push scales the rects it hands
     over, so the receiving scene's copy shows doubled edges and labels. Keep handed-over elements out of
     the pushed group, or push both scenes identically.
+44. **Font outlines overlap.** Many fonts (variable-font instances especially) build letters from overlapping
+    contours: filled they look right, but a stroke traced along the outlines shows inner lines (a "+" in "t",
+    a double stem on "D"). Unite each glyph's contours before tracing (fontTools `removeOverlaps` with
+    skia-pathops) and fill from the same merged outlines so the handoff to the solid mark still lines up.
+45. **A luminance-only dither does not stop 4:2:0 chroma banding.** On a coloured dark gradient (a warm
+    haze) H.264 still quantizes chroma into flat blobs. Dither every channel independently (seeded RGB noise
+    at ~2 % alpha, re-offset per frame), keep it off the mark, and encode with `-tune grain` and `aq-mode=3`
+    from a near-lossless intermediate. Expect a much larger file.
+46. **Traced outlines are closed loops:** after a contour the head is back at its start, so the travel line to
+    the next letter often leaves from the wrong side and cuts through the letter just drawn (or through a
+    counter, like the inside of an "o"). Never draw travel inside a letter, and mask travel between letters
+    (and any trailing flare arm) with the letters' padded bounding boxes; a silhouette-only mask still lets
+    lines cross open counters.

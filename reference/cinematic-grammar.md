@@ -100,8 +100,14 @@ cast: registry `cut-the-curve` (transition in) + `light-sweep-pass` (accent) | h
 
 ## Critic rubric (cinematic gate)
 
-A separate reviewer scores the rendered MP4's frames (first, last, every cut and both sides of it, every
-shot midpoint) 1-10 on each line. The film passes at an average of 8 with no line below 6.
+A separate reviewer scores the rendered MP4 1-10 on each line. The film passes at an average of 8 with no line
+below 6. Stills hide motion, so the reviewer looks at three things:
+
+- **Stills:** first and last frame and every shot midpoint.
+- **Motion strips:** 1 s around every cut, transition, camera move, the climax and the last second, at 12 fps,
+  tiled (`ffmpeg -ss T-0.5 -t 1 -i out.mp4 -vf "fps=12,scale=320:-1,tile=6x2" -frames:v 1 strip.jpg`).
+  A charge, a flash or a transition that is invisible frame to frame does not exist.
+- **The sound curve:** short-term RMS every 0.1 s, checked against the picture's hits, risers and holds.
 
 1. **Concept clarity:** the one message is unmistakable by the end.
 2. **Shot design:** varied sizes, motivated camera, depth layers, clean composition and safe areas.
@@ -113,4 +119,7 @@ shot midpoint) 1-10 on each line. The film passes at an average of 8 with no lin
 8. **Polish:** no artefacts, no clipped or overlapping text, no blank frames, a designed final frame.
 
 The critic returns a ranked fix list (each fix: timecode, what is wrong, the specific change, the skill or
-registry item to use). The director applies the fixes, re-renders and re-verifies; at most two critic rounds.
+registry item to use) and marks a fix `repeat` when the previous round already asked for it. The director
+applies the fixes, re-renders and re-verifies; at most three critic rounds, then one final score-only look.
+A repeated fix means the last approach failed: change the technique, structure or registry item, not just the
+numbers, and show the before/after strip in the report.

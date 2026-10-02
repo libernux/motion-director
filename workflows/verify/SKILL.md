@@ -38,7 +38,8 @@ and write the report.
 6. **Cinematic gate (cinematic tier):** score the rendered frames against the critic rubric in
    [../../reference/cinematic-grammar.md](../../reference/cinematic-grammar.md#critic-rubric-cinematic-gate)
    (ideally by a separate reviewer: a subagent that sees only the frames, the brief and the rubric). Below an
-   average of 8, or any line below 6: apply the ranked fixes, re-render, re-score; at most two rounds. Record
+   average of 8, or any line below 6: apply the ranked fixes, re-render, re-score; at most three rounds (a
+   repeated fix demands a different approach). Record
    the scores and the fixes in the report. With narration, transcribe the MP4 audio and compare it to the script.
 7. G7: the report.
 
