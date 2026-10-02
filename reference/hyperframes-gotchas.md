@@ -120,3 +120,37 @@ Each of these cost real debugging. Most never show in `lint`; several only show 
     counter, like the inside of an "o"). Never draw travel inside a letter, and mask travel between letters
     (and any trailing flare arm) with the letters' padded bounding boxes; a silhouette-only mask still lets
     lines cross open counters.
+47. **Mounted registry items all ship as `<div id="root">`** and read `document.getElementById("root")` and
+    `root.dataset.duration`. Mount two of them (or one in an index whose root is `#root`) and they all bind to the
+    first `#root` in the assembled page: wrong element, wrong duration, wrong envelope. In the installed copy, rename
+    the root id (`#scr-root`, `#tmx-root`), rename its `#root` CSS selectors, set its `data-duration` (root and inner
+    `.clip`) to the slot length, and delete the CDN `<script src=".../gsap.min.js">` (the index vendors GSAP).
+48. **TTS WAVs can be mono with an unknown channel layout** (`channel_layout=unknown`): `aformat=channel_layouts=
+    stereo` then fails with "Cannot select channel layout". Upmix with `pan=stereo|c0=c0|c1=c0` before resampling.
+49. **A transparent text colour is an audit error** (`text_not_painted`), even when an overlay covers it (a selected
+    chip drawn as a filled layer over its label). Hide the covered label with `visibility: hidden` instead.
+50. **Registry variables are exposed as CSS custom properties on the mounted root**: passing `accent: "blue"` to a
+    mounted item sets `--accent: blue` inside it, which shadows the film's own `--accent` token, so `var(--accent)`
+    resolves to the keyword `blue` (#0000FF). Leave such variables unset (the item falls back to `--brand`) or give
+    them values that are valid as the token too.
+51. **Raising hits can silently break `loudnorm` linear mode**: when the raw mix's true peak minus the needed gain stays
+    above the TP target, loudnorm falls back to dynamic mode and its resample step fails ("Cannot select channel
+    layout"). Put a bus limiter (`alimiter=limit=0.79:level=0`) before the two-pass loudnorm.
+
+52. **The mount strips `data-duration` from a mounted root** (as it strips `data-composition-id`), so a registry item
+    that reads `root.dataset.duration || "3.5"` silently runs on its default: a rail meant for 80 s plays all its
+    states in 3.5 s and fades out. In the installed copy, read the window from the spine
+    (`LAYOUT.T.win.<slot>[1] - [0]`) and keep the dataset read only as the fallback. The item's inner `.clip`
+    keeps its own `data-duration`, which still decides when the runtime hides it: retime the slot and that attribute
+    together, or the item vanishes before its slot ends.
+53. **Composition scripts see a scoped `document`; a shared global lib does not.** A helper in `assets/lib/*.js` that
+    calls `document.getElementById("<comp>-root")` while the composition script runs gets `null` (the template is not
+    attached to the global document yet), while the same call inside the composition works. Pass the root element
+    from the composition script into the kit (`Kit.scene(document.getElementById("x-root"))`), and give the templated
+    root static children rather than building everything into an empty root.
+54. **Per-frame DOM audits need the assembled page, not `index.html`.** The background preview serves it at
+    `<serverUrl>/api/projects/<id>/preview` (`hyperframes preview --status --json` gives the URL); drive it with
+    `puppeteer-core` and the cached headless shell, wait for `window.__playerReady`, and seek with
+    `window.__player.renderSeek(t)`. Each element's `getBoundingClientRect()` is then the true on-screen rect
+    (camera transforms included), and an ancestor walk over computed `opacity`/`filter` tells sharp text from
+    text that is soft or invisible.

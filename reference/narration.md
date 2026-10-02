@@ -38,3 +38,16 @@ deliver without narration and say so in the report.
 - Duck music 6-9 dB under the voice with short attack and a slower release; keep the voice around -16 LUFS
   integrated in the final mix and true peak at or below -1.5 dBTP.
 - Verify: transcribe the rendered MP4's audio and check every line is intelligible and matches the script.
+
+## Intelligibility is measured, not assumed
+
+- Transcribe the final mix and the voice-only track with the same model and compare their word error against the
+  script. A gap between the two is masking, not diction. Here, a lighter female voice read 0 % alone and 10 % in the mix.
+- The usual culprits are sounds placed *on* the words by design: a hit on the first syllable of a brand name, per-word
+  title blips, a match-cut whoosh on the question's last word, typing under a spoken line. Start a line 0.2–0.3 s after
+  a hit, and duck the sound-design and transition stems under the voice (6–9 dB and 4–5 dB) as well as the music.
+  Lighter or higher voices need a deeper music duck and a presence dip where they sit (about 2.5–3 kHz).
+- A different voice for a variant: when the narration tool is pinned to one voice, generate through the same provider
+  account and model, keep the voice's stored settings, and steer pace with the provider's speed setting, never by
+  time-stretching. Re-time the picture to the new words through the spine (word anchors between the two voices), not
+  by hand.

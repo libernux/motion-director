@@ -25,6 +25,15 @@ Review the contact sheets for:
 
 Zoom a single frame (`ffmpeg ... -vf crop=...`) when something is ambiguous at contact-sheet size.
 
+**Safe areas on every frame, not spot checks.** Spot-checked framings miss titles that graze an edge mid-shot. Project
+every readable rect (card titles, subs, lane labels, stat blocks) through the spine cameras for every frame (a small
+`bun` script that reuses `camera.js`): an on-screen rect must sit fully inside action-safe, never half-cropped. Exempt
+only whips/flights and elements deliberately out of focus (and make the compositions soften what a ride crops).
+When the rects live in the compositions rather than the spine (product panels, 2D chapter cameras), audit the real
+page instead: seek the assembled preview frame by frame and measure every text-painting element's bounding rect,
+skipping text that is blurred or nearly transparent (hyperframes-gotchas.md #54). Headers and HUD bands count too:
+in a close-up, everything outside the shot's focus must go soft, or the frame will crop a sharp glyph.
+
 ## G3 - Check (before render)
 
 `bash scripts/hf.sh check` -> "Check passed" with 0 errors. Resolve warnings: layout overlaps (mark

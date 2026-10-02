@@ -45,6 +45,19 @@ calm minor: a hit per ghost, card, run step, signal and ring); normalization:
      rising), a riser into the dive, an impact + a wide chord on the mark, plinks on the recap.
 5. **Pan with the picture:** chat on the left pans left, the stage right, flights follow the motion.
 
+## Camera-driven sound design
+
+Hand-placed whooshes drift from the picture as soon as a camera key moves. Derive them from the spine cameras instead:
+sample each camera's screen speed (pan + zoom, px per frame), treat every segment above ~9 px/frame as a move, and give
+it a whoosh of its own length, panned with the content's direction, gain from its peak speed, pitch lower for bigger
+moves; add a rising air swell under pull-backs, a short suck into push-ins, and a soft continuous air under slow rides.
+Hard cuts (one-frame jumps) are not moves.
+
+Put these camera sounds and the designed handoffs (risers into hits, cut accents) on their **own transitions stem**,
+mixed at its own level and never ducked. Peak normalization of a shared SFX stem otherwise lets one big impact push
+every whoosh down. Then close the loop: measure the final mix's 0.1 s RMS at every transition frame listed from the
+spine and fail anything under about -24 dB; tune the stem until the check passes.
+
 ## Loudness and QA
 
 - Two-pass `loudnorm` to -16 LUFS / -1.5 dBTP with `LRA=20` and `linear=true` (ffmpeg silently falls back
@@ -54,6 +67,8 @@ calm minor: a hit per ghost, card, run step, signal and ring); normalization:
 - Orchestral recordings instead of synthesis: linear loudnorm cannot reach -16 LUFS without clipping
   tutti peaks; use gain + `alimiter` in two passes.
 - Report numbers (integrated LUFS, LRA, peak). Never claim to have listened.
+- A narrated film sits near LRA 2 because the voice fills every 3 s window. Shape the mix by act to reach LRA ≥ 4:
+  quieter bed (and a slightly closer, softer voice) for intimate beats, +3-6 dB bed for the payoff and the closing hold.
 
 ## SFX
 
