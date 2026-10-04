@@ -6,7 +6,8 @@ set -uo pipefail
 export LC_ALL=C
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
-LOG="$(mktemp -t check-log).txt"
+TMP="${TMPDIR:-/tmp}"
+LOG="$(mktemp "${TMP%/}/check-log.XXXXXX")"
 bash scripts/hf.sh check >"$LOG" 2>&1
 STATUS=$?
 grep -n "✗\|⚠\|ℹ" "$LOG" | head -120
