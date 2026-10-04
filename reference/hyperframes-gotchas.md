@@ -107,6 +107,14 @@ Each of these cost real debugging. Most never show in `lint`; several only show 
 41. **A camera push breaks a pixel-identical handoff:** a scene with a slow push scales the rects it hands
     over, so the receiving scene's copy shows doubled edges and labels. Keep handed-over elements out of
     the pushed group, or push both scenes identically.
+42. **`loudnorm` falls back to dynamic mode when the peak-to-loudness ratio is too high** (a sting whose
+    one low hit is ~14 dB over a quiet bed): linear mode needs `TP_target - I_target` (14.5 dB at -16/-1.5)
+    ≥ measured `input_tp - input_i`, otherwise the second pass silently goes dynamic and `aresample` fails
+    ("Cannot select channel layout"). Measure the raw mix first; lift the mid/high bed (K-weighting barely
+    counts sub energy) or trim the hit until the ratio fits.
+43. **opentype.js cannot shape some modern fonts** (`substitutionType ... lookupType: 6 - substFormat: 2 is
+    not yet supported` from `ccmp`), so `font.getPath`/`forEachGlyph` throw. For plain Latin wordmarks, lay
+    out by hand: `charToGlyph` per character, `advanceWidth + getKerningValue`, `glyph.getPath(x, y, size)`.
 44. **Font outlines overlap.** Many fonts (variable-font instances especially) build letters from overlapping
     contours: filled they look right, but a stroke traced along the outlines shows inner lines (a "+" in "t",
     a double stem on "D"). Unite each glyph's contours before tracing (fontTools `removeOverlaps` with
