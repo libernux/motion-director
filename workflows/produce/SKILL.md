@@ -34,7 +34,8 @@ the whole chain at the house quality bar.
 
 ### Procedure
 
-1. **Route and scaffold.** Run `/hyperframes` (intent layer, autonomous when the user is away) and pick
+1. **Route and scaffold.** Check prerequisites with `bash <skill>/scripts/project/doctor.sh` (fix any
+   `missing` line first). Run `/hyperframes` (intent layer, autonomous when the user is away) and pick
    `general-video` for custom compositions. Scaffold with the pinned CLI:
    `bun x hyperframes@<pin> init <dir> --non-interactive --example=blank --skill=general-video`, then
    `bash <skill>/scripts/project/setup.sh <dir> <pin> <shape>` (scripts, libs, the shape's spine and
